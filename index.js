@@ -34,12 +34,13 @@ Vue.component('consulta', {
       return Prism.highlight(query, Prism.languages.prolog, "prolog");
     },
     submitData() {
-      // TODO: Aqui vamos a hacer la peticion post para enviar los datos
-      // al api
-      // axios.post(URL, data).then();
-
-      let res = this.rules + this.query;
-      this.$emit('response', res);
+      axios.post("https://fastapi-prolog.herokuapp.com/prolog", {
+        "rules_text": this.rules.replace(/\n|\r/g, ""),
+        "query_text": this.query
+      },
+      ).then(res => {
+        this.$emit('response', res.data);
+      });
     }
   },
 });
