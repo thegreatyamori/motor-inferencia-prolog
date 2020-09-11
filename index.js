@@ -17,6 +17,9 @@ Vue.component('editor', {
 
 
 Vue.component('consulta', {
+  props: {
+    rules: String,
+  },
   data() {
     return {
       query: String,
@@ -29,20 +32,25 @@ Vue.component('consulta', {
   methods: {
     highlighter(query) {
       return Prism.highlight(query, Prism.languages.prolog, "prolog");
+    },
+    submitData() {
+      // TODO: Aqui vamos a hacer la peticion post para enviar los datos
+      // al api
+      let res = this.rules + this.query;
+      this.$emit('response', res);
     }
   },
 });
 
 
 Vue.component('respuesta', {
+  props: {
+    response: String
+  },
   data() {
     return {
-      response: String,
       title: "Respuesta",
     }
-  },
-  created() {
-    this.response = "";
   },
   methods: {
     highlighter(response) {
@@ -55,6 +63,15 @@ Vue.component('respuesta', {
 let app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
-  }
+    code: '',
+    res: '',
+  },
+  methods: {
+    editor(code) {
+      this.code = code
+    },
+    setResponse(res) {
+      this.res = res
+    },
+  },
 })

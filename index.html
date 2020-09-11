@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/vue-prism-editor/dist/prismeditor.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-prism-editor/dist/prismeditor.min.css" />
   <!-- custom highlighter: -->
-  <link rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism-coy.css" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs/themes/prism-coy.css" />
+  <link rel="stylesheet" type="text/css" href="style.css">
 
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <base href="/">
   <title>Motor de Inferencia</title>
 </head>
 
@@ -20,20 +22,20 @@
   <div id="app">
     <div class="grid grid-cols-2 gap-4 justify-items-auto">
       <div class="text-gray-700 bg-gray-400 px-4 py-2 ml-4">
-        <editor inline-template>
+        <editor inline-template @text="editor($event)">
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-2">
               {{ title }}
             </label>
             <prism-editor class="code-editor code-editor-500 bg-gray-100" v-model="code" :highlight="highlighter"
-              line-numbers>
+              @input="$emit('text', $event)" line-numbers>
             </prism-editor>
           </div>
         </editor>
       </div>
 
       <div class="text-gray-700 bg-gray-400 px-4 py-2 mr-4">
-        <consulta inline-template>
+        <consulta inline-template @response="setResponse($event)" :rules="code">
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-2">
               {{ title }}
@@ -42,13 +44,14 @@
               line-numbers>
             </prism-editor>
             <div class="flex justify-end">
-              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2">
+              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2" @click="submitData()">
                 Consultar
               </button>
             </div>
           </div>
         </consulta>
-        <respuesta inline-template>
+
+        <respuesta inline-template :response="res">
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-2">
               {{ title }}
