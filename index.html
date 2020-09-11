@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/vue-prism-editor/dist/prismeditor.min.css" />
+  <!-- custom highlighter: -->
+  <link rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism-coy.css" />
+  <link rel="stylesheet" href="style.css">
+
+  <title>Motor de Inferencia</title>
+</head>
+
+<body class="bg-gray-200">
+  <div class="flex justify-center">
+    <h1 class="text-5xl text-gray-700 justify-center">Motor de Inferencia - Prolog</h1>
+  </div>
+  <div id="app">
+    <div class="grid grid-cols-2 gap-4 justify-items-auto">
+      <div class="text-gray-700 bg-gray-400 px-4 py-2 ml-4">
+        <editor inline-template>
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              {{ title }}
+            </label>
+            <prism-editor class="code-editor code-editor-500 bg-gray-100" v-model="code" :highlight="highlighter"
+              line-numbers>
+            </prism-editor>
+          </div>
+        </editor>
+      </div>
+
+      <div class="text-gray-700 bg-gray-400 px-4 py-2 mr-4">
+        <consulta inline-template>
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              {{ title }}
+            </label>
+            <prism-editor class="code-editor code-editor-200 bg-gray-100" v-model="query" :highlight="highlighter"
+              line-numbers>
+            </prism-editor>
+            <div class="flex justify-end">
+              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2">
+                Consultar
+              </button>
+            </div>
+          </div>
+        </consulta>
+        <respuesta inline-template>
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              {{ title }}
+            </label>
+            <prism-editor class="code-editor code-editor-100 bg-gray-100" v-model="response" :highlight="highlighter"
+              :readonly="true" line-numbers>
+            </prism-editor>
+          </div>
+        </respuesta>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-prism-editor"></script>
+<script src="https://unpkg.com/prismjs/prism.js"></script>
+<script src="https://unpkg.com/prismjs@1.21.0/components/prism-prolog.min.js"></script>
+<script src="index.js"></script>
+
+</html>

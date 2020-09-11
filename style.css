@@ -1,0 +1,20 @@
+.code-editor-100 {
+  height: 100px;
+}
+.code-editor-200 {
+  height: 200px;
+}
+.code-editor-500 {
+  height: 500px;
+}
+.code-editor {
+  color: #ccc;
+
+  font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 5px;
+}
+.prism-editor__textarea:focus {
+  outline: none;
+}
