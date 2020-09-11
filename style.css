@@ -9,6 +9,7 @@
 }
 .code-editor {
   color: #ccc;
+  background-color: #202124;
 
   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   font-size: 14px;
