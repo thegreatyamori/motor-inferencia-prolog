@@ -36,6 +36,8 @@ Vue.component('consulta', {
     submitData() {
       // TODO: Aqui vamos a hacer la peticion post para enviar los datos
       // al api
+      // axios.post(URL, data).then();
+
       let res = this.rules + this.query;
       this.$emit('response', res);
     }
