@@ -6,7 +6,7 @@ Vue.component('editor', {
     }
   },
   created() {
-    this.code = "Escribe las reglas aquí";
+    this.code = "";
   },
   methods: {
     highlighter(code) {
@@ -27,7 +27,7 @@ Vue.component('consulta', {
     }
   },
   created() {
-    this.query = "Escribe la consulta aquí";
+    this.query = "";
   },
   methods: {
     highlighter(query) {
